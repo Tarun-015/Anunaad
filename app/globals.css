@@ -1,26 +1,353 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f3ebdd;
+  --paper-light: #faf6ee;
+  --ink: #30271f;
+  --muted: #806d5b;
+  --line: #d7c8b4;
+  --accent: #9a7657;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.journal {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 7%;
+  overflow: hidden;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.wordmark {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+}
+
+.wordmark span {
+  color: var(--accent);
+}
+
+.site-header nav {
+  display: flex;
+  gap: 30px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.site-header nav a:hover,
+.text-link:hover {
+  color: var(--accent);
+}
+
+.hero {
+  min-height: 590px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 90px 0 75px;
+}
+
+.eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.handwritten {
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  color: var(--accent);
+}
+
+.hero-note {
+  margin: 18px 0 0;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: clamp(54px, 8vw, 100px);
+  line-height: 1.08;
+  letter-spacing: -3px;
+  margin: 20px 0;
+}
+
+.hero h1 span {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-description {
+  max-width: 420px;
+  line-height: 1.9;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.primary-link {
+  margin-top: 30px;
+  padding: 15px 22px;
+  background: var(--ink);
+  color: var(--paper-light);
+  font-size: 12px;
+  transition: background 0.2s ease;
+}
+
+.primary-link:hover {
+  background: var(--accent);
+}
+
+.primary-link span {
+  margin-left: 12px;
+}
+
+.hero-footnote {
+  margin-top: 28px;
+  font-family: 'Caveat', cursive;
+  font-size: 21px;
+  color: var(--muted);
+}
+
+.collection {
+  padding: 65px 0 85px;
+  border-top: 1px solid var(--line);
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.section-heading h2,
+.feelings h2,
+.about-note h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: clamp(29px, 4vw, 43px);
+  margin: 10px 0 0;
+}
+
+.text-link {
+  font-size: 12px;
+  color: var(--muted);
+  padding-bottom: 8px;
+}
+
+.poem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.poem-card {
+  min-height: 235px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border: 1px solid var(--line);
+  background: rgba(250, 246, 238, 0.45);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.poem-card:hover {
+  transform: translateY(-4px);
+  background: var(--paper-light);
+}
+
+.poem-number {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.poem-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 25px 0 10px;
+}
+
+.poem-excerpt {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.poem-card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.placeholder-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 20px;
+}
+
+.feelings {
+  padding: 70px 0;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.feelings h2 {
+  max-width: 600px;
+  margin: 16px auto 30px;
+}
+
+.feeling-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.feeling-list a {
+  border: 1px solid var(--line);
+  padding: 11px 18px;
+  border-radius: 30px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+
+.feeling-list a:hover {
+  background: #e8d9c5;
+}
+
+.about-note {
+  padding: 95px 0;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-note h2 {
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.3;
+}
+
+.about-note > p:last-child {
+  max-width: 420px;
+  margin: 20px auto 0;
+  font-size: 13px;
+  line-height: 2;
+  color: var(--muted);
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  padding: 25px 0 35px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.site-footer .wordmark {
+  color: var(--ink);
+}
+
+@media (max-width: 760px) {
+  .journal {
+    padding: 0 6%;
+  }
+
+  .site-header {
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .site-header nav {
+    gap: 13px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    font-size: 11px;
+  }
+
+  .wordmark {
+    font-size: 21px;
+    white-space: nowrap;
+  }
+
+  .hero {
+    min-height: 510px;
+    padding: 70px 0;
+  }
+
+  .hero h1 {
+    letter-spacing: -1.5px;
+  }
+
+  .poem-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .poem-card {
+    min-height: 205px;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+  }
+
+  .section-heading h2 {
+    font-size: 30px;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
